@@ -1,0 +1,74 @@
+.shortPass {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border-bottom: 4px solid #fc842d;
+  box-shadow: 0px 1px 8px rgba(252, 132, 45, 0.5);
+
+  width: 0%;
+  border-radius: 10px;
+  margin-top: 2px;  
+
+  transition: width 1000ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.easyPass {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border-bottom: 4px solid #fc842d;
+  box-shadow: 0px 1px 8px rgba(252, 132, 45, 0.5);
+
+  width: 25%;
+  border-radius: 10px;
+  margin-top: 2px;  
+
+  transition: width 1000ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.mediumPass {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border-bottom: 4px solid #fc842d;
+  box-shadow: 0px 1px 8px rgba(252, 132, 45, 0.5);
+
+  width: 50%;
+  border-radius: 10px;
+  margin-top: 2px;  
+
+  transition: width 1000ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.longPass {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border-bottom: 4px solid #fc842d;
+  box-shadow: 0px 1px 8px rgba(252, 132, 45, 0.5);
+
+  width: 75%;
+  border-radius: 10px;
+  margin-top: 2px;  
+
+  transition: width 1000ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.strongPass {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border-bottom: 4px solid #fc842d;
+  box-shadow: 0px 1px 8px rgba(252, 132, 45, 0.5);
+
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 2px;  
+
+  transition: width 1000ms cubic-bezier(0.4, 0, 0.2, 1)
+}
