@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -70,7 +71,8 @@ const CalculatorForm = () => {
 
   const onSubmit = data => {
     if (isLoggedIn) {
-      dispatch(calculateUserDailyRate(data));
+      console.log('Submitting with userId:', userId); // Debugging log
+      dispatch(calculateUserDailyRate({ ...data, userId }));
       navigate('/diary');
     } else {
       dispatch(calculatePublicDailyRate(data));

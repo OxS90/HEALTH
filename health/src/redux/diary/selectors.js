@@ -1,5 +1,4 @@
 // src/redux/diary/selectors.js
-
 export const selectDate = (state) => state.diary.date;
 export const selectEatenProducts = (state) => state.diary.eatenProducts;
 export const selectDayInfo = (state) => state.diary.dayInfo;
@@ -8,7 +7,6 @@ export const selectDiaryError = (state) => state.diary.error;
 export const selectCurrentPage = (state) => state.diary.currentPage;
 export const selectItemsPerPage = (state) => state.diary.itemsPerPage;
 
-// Select the summary
 export const selectSummary = (state) => {
   const dailyRate = state.calculator.dailyRate;
   const eatenProducts = state.diary.eatenProducts;
@@ -24,3 +22,8 @@ export const selectSummary = (state) => {
     percentsOfDailyRate: percentsOfDailyRate > 0 ? percentsOfDailyRate : 0,
   };
 };
+
+export const selectNotAllowedProducts = (state) => {
+  return state.calculator.notRecommendedProducts.slice(0, 4);
+};
+

@@ -5,6 +5,9 @@ export const NavListMenu = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
   @media screen and (min-width: 480px) {
     flex-direction: row;
@@ -26,6 +29,9 @@ export const NavList = styled.ul`
   display: flex;
   gap: 14px;
   padding-top: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
   @media screen and (min-width: 768px) {
     padding-top: 0;
@@ -34,9 +40,8 @@ export const NavList = styled.ul`
 
   @media screen and (min-width: 1280px) {
     gap: 20px;
-    padding: 20px 0 6px 20px;
+    padding: 20px 0 0px 20px;
     margin-left: 0;
-
   }
 `;
 
@@ -47,6 +52,7 @@ export const NavLinkStyled = styled(NavLink)`
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #9b9faa;
+  text-decoration: none;
 
   &.active {
     color: #212121;

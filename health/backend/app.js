@@ -50,7 +50,6 @@ app.use('/api/auth', authRouter); // Adjusted path for authentication
 app.use('/api/products', productsRouter); // Router for products
 app.use('/api/calories', caloriesRouter); // Router for calories
 app.use('/api/eaten-products', eatenProductsRouter); // Router for eaten products
-// app.use('/api/day/info', dayRouter); // Routes for day info
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

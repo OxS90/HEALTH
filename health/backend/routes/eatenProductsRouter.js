@@ -52,6 +52,25 @@ const getUserIdFromToken = (token) => {
  *     responses:
  *       201:
  *         description: Eaten product added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 userId:
+ *                   type: string
+ *                 date:
+ *                   type: string
+ *                 productId:
+ *                   type: string
+ *                 productTitle:
+ *                   type: string
+ *                 weight:
+ *                   type: number
+ *                 calories:
+ *                   type: number
  *       500:
  *         description: Error adding eaten product
  */
@@ -134,6 +153,27 @@ const deleteEatenProduct = async (req, res) => {
  *     responses:
  *       200:
  *         description: Eaten products retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                   userId:
+ *                     type: string
+ *                   date:
+ *                     type: string
+ *                   productId:
+ *                     type: string
+ *                   productTitle:
+ *                     type: string
+ *                   weight:
+ *                     type: number
+ *                   calories:
+ *                     type: number
  *       500:
  *         description: Error fetching eaten products
  */
@@ -168,6 +208,27 @@ const getEatenProducts = async (req, res) => {
  *     responses:
  *       200:
  *         description: Day info retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                   userId:
+ *                     type: string
+ *                   date:
+ *                     type: string
+ *                   productId:
+ *                     type: string
+ *                   productTitle:
+ *                     type: string
+ *                   weight:
+ *                     type: number
+ *                   calories:
+ *                     type: number
  *       500:
  *         description: Error retrieving day info
  */

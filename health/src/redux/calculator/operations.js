@@ -1,15 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
-import { toast } from 'react-toastify';
 
 export const calculatePublicDailyRate = createAsyncThunk(
   'calculator/calculatePublicDailyRate',
-  async (data, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
-      const response = await api.post('/calories/public', data);
+      const response = await api.post('/calories/public', userData);
       return response.data;
     } catch (error) {
-      toast.error('Error calculating daily intake');
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -17,12 +15,11 @@ export const calculatePublicDailyRate = createAsyncThunk(
 
 export const calculateUserDailyRate = createAsyncThunk(
   'calculator/calculateUserDailyRate',
-  async (data, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
-      const response = await api.post('/calories/user', data);
+      const response = await api.post('/calories/user', userData);
       return response.data;
     } catch (error) {
-      toast.error('Error calculating daily intake');
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -32,11 +29,13 @@ export const getUserDailyRate = createAsyncThunk(
   'calculator/getUserDailyRate',
   async (_, thunkAPI) => {
     try {
+      console.log('Attempting to fetch user daily rate');
       const response = await api.get('/calories/user/daily-rate');
+      console.log('User daily rate fetched successfully:', response.data);
       return response.data;
     } catch (error) {
-      toast.error('Error retrieving daily rate');
-      return thunkAPI.rejectWithValue(error.response.data);
+      console.error('Error fetching user daily rate:', error.response ? error.response.data : error.message);
+      return thunkAPI.rejectWithValue(error.response ? error.response.data : error.message);
     }
   }
 );

@@ -1,16 +1,13 @@
-// src/components/Calculator/CalculatorWrap.jsx
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDayInfo } from '../../redux/diary/operations';
+import { getDayInfo } from '../../redux/diary/operations'; // Make sure this is the correct path
+import { getUserDailyRate } from '../../redux/calculator/operations'; // Import from the correct path
 import {
   selectDate,
   selectEatenProducts,
   selectSummary,
-} from '../../redux/diary/selectors';
-import {
   selectNotAllowedProducts,
-} from '../../redux/calculator/selectors';
+} from '../../redux/diary/selectors';
 import {
   CaloriesEl,
   CaloriesText,
@@ -36,7 +33,10 @@ export const CalculatorWrap = () => {
     }
   }, [dispatch, date]);
 
-  const notAllowedProductsToDisplay = notAllowedProducts.slice(0, 4);
+  useEffect(() => {
+    console.log('Fetching user daily rate');
+    dispatch(getUserDailyRate());
+  }, [dispatch]);
 
   return (
     <Section>
@@ -81,9 +81,9 @@ export const CalculatorWrap = () => {
         </SectionSummary>
         <section>
           <CaloriesTitleFood>Food not recommended</CaloriesTitleFood>
-          {notAllowedProductsToDisplay?.length > 0 ? (
-            notAllowedProductsToDisplay.map((prod, index) => (
-              <CaloriesText key={index}>{prod}</CaloriesText>
+          {notAllowedProducts?.length > 0 ? (
+            notAllowedProducts.slice(0, 4).map((prod) => (
+              <CaloriesText key={prod}>{prod}</CaloriesText>
             ))
           ) : (
             <CaloriesText>Your diet will be displayed here</CaloriesText>

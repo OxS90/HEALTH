@@ -7,13 +7,6 @@ const caloriesRouter = express.Router();
 
 /**
  * @swagger
- * tags:
- *   name: Calories
- *   description: Operations related to calorie management
- */
-
-/**
- * @swagger
  * /calories/public:
  *   post:
  *     summary: Calculate daily calorie intake for public users
@@ -47,7 +40,7 @@ const caloriesRouter = express.Router();
  *       500:
  *         description: Error calculating daily intake
  */
-const getDailyRate = async (req, res) => {
+const calculateDailyRate = async (req, res) => {
   const { height, weight, age, desiredWeight, bloodType } = req.body;
 
   const BMR = 10 * weight + 6.25 * height - 5 * age;
@@ -61,15 +54,18 @@ const getDailyRate = async (req, res) => {
     const notRecommendedProducts = products
       .filter((product) => product.groupBloodNotAllowed[bloodType])
       .map((product) => product.title);
-
+      console.log('Calculated daily rate:', dailyRateCalc);
+      console.log('Not recommended products:', notRecommendedProducts);
     // If the user is authenticated, save the daily rate and not recommended products to the database
     if (req.user) {
+      console.log('Authenticated user:', req.user);
       const dailyRateEntry = new DailyRate({
         userId: req.user.id,
         dailyRate: dailyRateCalc,
         notRecommendedProducts,
       });
       await dailyRateEntry.save();
+      console.log('Daily rate saved for user:', req.user.id);
     }
 
     // Sending the calculated daily calories and the list of non-recommended products as a response
@@ -116,20 +112,7 @@ const getDailyRate = async (req, res) => {
  *       500:
  *         description: Error calculating daily intake
  */
-const getUserDailyRate = async (req, res) => {
-  const userId = req.user.id;
-
-  try {
-    const dailyRate = await DailyRate.findOne({ userId });
-    if (dailyRate) {
-      res.status(200).json(dailyRate);
-    } else {
-      res.status(404).json({ message: 'Daily rate not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Error retrieving daily rate', error });
-  }
-};
+caloriesRouter.post('/user', authMiddleware, calculateDailyRate);
 
 /**
  * @swagger
@@ -147,8 +130,24 @@ const getUserDailyRate = async (req, res) => {
  *       500:
  *         description: Error retrieving daily rate
  */
-caloriesRouter.post('/public', getDailyRate);
-caloriesRouter.post('/user', authMiddleware, getDailyRate);
+const getUserDailyRate = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    console.log('Fetching daily rate for user:', userId);
+    const dailyRate = await DailyRate.findOne({ userId });
+    if (dailyRate) {
+      res.status(200).json(dailyRate);
+    } else {
+      res.status(404).json({ message: 'Daily rate not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error retrieving daily rate', error });
+  }
+};
+
 caloriesRouter.get('/user/daily-rate', authMiddleware, getUserDailyRate);
 
 export default caloriesRouter;
+
+

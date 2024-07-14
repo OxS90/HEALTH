@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteEatenProduct, getDayInfo } from '../../redux/diary/operations';
+import { deleteEatenProduct, getEatenProductsByDate } from '../../redux/diary/operations';
 import {
   selectDate,
-  selectDayInfo,
   selectEatenProducts,
 } from '../../redux/diary/selectors';
 
@@ -21,22 +20,20 @@ import closeIcon from '../../assets/closeDiary.svg';
 export const DiaryProductsList = () => {
   const dispatch = useDispatch();
   const date = useSelector(selectDate);
-  const dayInfo = useSelector(selectDayInfo);
   const eatenProducts = useSelector(selectEatenProducts);
 
   useEffect(() => {
     if (date) {
-      console.log('Fetching day info for date:', date);
-      dispatch(getDayInfo(date));
+      console.log('Fetching eaten products for date:', date);
+      dispatch(getEatenProductsByDate({ date }));
     }
   }, [date, dispatch]);
 
   useEffect(() => {
     console.log('Component mounted or updated');
-    console.log('Day Info: ', dayInfo);
     console.log('Date: ', date);
     console.log('Eaten Products: ', eatenProducts);
-  }, [dayInfo, date, eatenProducts]);
+  }, [date, eatenProducts]);
 
   const deleteProductId = (e) => {
     const eatenProductId = e.target.id;
@@ -46,9 +43,9 @@ export const DiaryProductsList = () => {
     dispatch(deleteEatenProduct(eatenProductId))
       .unwrap()
       .then(() => {
-        console.log('Product deleted, fetching updated day info');
+        console.log('Product deleted, fetching updated eaten products');
         if (date) {
-          dispatch(getDayInfo(date));
+          dispatch(getEatenProductsByDate({ date }));
         }
       })
       .catch((error) => {

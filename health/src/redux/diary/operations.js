@@ -1,16 +1,5 @@
-// src/redux/diary/operations.js
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
-
-export const getDayInfo = createAsyncThunk('diary/getDayInfo', async (date, thunkAPI) => {
-  try {
-    const response = await api.get(`/eaten-products/day/${date}`);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
-  }
-});
 
 export const addEatenProduct = createAsyncThunk('diary/addEatenProduct', async (productData, thunkAPI) => {
   try {
@@ -44,3 +33,24 @@ export const searchProducts = createAsyncThunk('diary/searchProducts', async (qu
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
+
+export const getDayInfo = createAsyncThunk('diary/getDayInfo', async (date, thunkAPI) => {
+  try {
+    const response = await api.get(`/eaten-products/day/${date}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
+});
+
+export const getEatenProductsByDate = createAsyncThunk(
+  'diary/getEatenProductsByDate',
+  async ({ date }, thunkAPI) => {
+    try {
+      const response = await api.get(`/eaten-products/${date}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

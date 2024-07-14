@@ -42,26 +42,19 @@ export const Container = styled.div`
 export const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-
-  @media screen and (min-width: 480px) {
-    align-items: center;
-  }
 
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
-  }
-
-  @media screen and (min-width: 1280px) {
-    max-width: 1280px;
-    padding: 0 16px;
-    align-items: flex-end;
   }
 `;
 
 export const NavLinkStyled = styled(NavLink)`
   display: flex;
+  align-items: center;
   gap: 10px;
+  text-decoration: none;
 
   @media screen and (min-width: 1280px) {
     gap: 0;
@@ -75,11 +68,11 @@ export const Title = styled.p`
   line-height: calc(24 / 20);
   text-align: center;
   color: #212121;
-  margin-top: 9px;
+  margin-top: 20px;
   margin-right: 20px;
 
   @media screen and (min-width: 1280px) {
-    padding-top: 35px;
+    padding-top: 20px;
     margin-left: -10px;
   }
 `;
@@ -129,7 +122,6 @@ export const UserName = styled.p`
 export const Delimiter = styled.span`
   display: block;
   width: 1px;
-  height: 32px;
+  height: 45px;
   background-color: #e0e0e0;
 `;
-

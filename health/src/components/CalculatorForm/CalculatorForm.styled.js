@@ -105,43 +105,6 @@ export const Input = styled.input`
   }
 `;
 
-// export const InputRadio = styled.input`
-//   width: 20px;
-//   height: 20px;
-//   border: 1px solid #e0e0e0;
-//   background-color: white;
-//   -webkit-appearance: none;
-//   appearance: none;
-//   background-color: #fff;
-//   margin: 0;
-//   font-family: 'Jost', sans-serif;
-//   color: #fc842d;
-//   width: 22px;
-//   height: 22px;
-//   border: 1px solid #e0e0e0;
-//   border-radius: 50%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   ::before {
-//     content: '';
-//     width: 0.65em;
-//     height: 0.65em;
-//     border-radius: 50%;
-//     transform: scale(0);
-//     transition: 120ms transform ease-in-out;
-//     box-shadow: inset 1em 1em #fc842d;
-//     background-color: CanvasText;
-//   }
-//   :checked::before {
-//     transform: scale(1);
-//   }
-//   :focus {
-//     outline: 1px solid #e0e0e0;
-//   }
-// `;
-
 export const Button = styled.button`
   width: 210px;
   height: 43px;
@@ -174,7 +137,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 15px;
 
   @media (min-width: 768px) {
     align-items: flex-start;
@@ -197,13 +160,23 @@ export const RadioBox = styled.div`
   margin-top: 10px;
 `;
 
-export const LabelRadio = styled.label`
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-`;
+
 
 export const InputRadio = styled.input`
   margin-right: 8px;
   cursor: pointer;
+  &:checked {
+    background-color: #fc842d; 
+    border-color: #fc842d;
+  }
+`;
+export const LabelRadio = styled.label`
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+ cursor: pointer;
+
+  ${InputRadio}:checked + & {
+    color: #fc842d; /* Example checked label color */
+  }
 `;

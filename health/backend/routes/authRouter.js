@@ -17,6 +17,44 @@ const generateTokens = (user) => {
   return { accessToken, refreshToken };
 };
 
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication and user management
+ */
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - email
+ *               - password
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User registered successfully
+ *       400:
+ *         description: User already exists
+ *       500:
+ *         description: Something went wrong
+ */
 authRouter.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -37,6 +75,34 @@ authRouter.post('/register', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Login a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *       401:
+ *         description: Invalid credentials
+ *       500:
+ *         description: Error logging in
+ */
 authRouter.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -58,6 +124,29 @@ authRouter.post('/login', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /auth/refreshToken:
+ *   post:
+ *     summary: Refresh access token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - token
+ *             properties:
+ *               token:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Tokens refreshed successfully
+ *       401:
+ *         description: Invalid or missing refresh token
+ */
 authRouter.post('/refreshToken', async (req, res) => {
   const { token } = req.body;
   if (!token) {
@@ -79,10 +168,36 @@ authRouter.post('/refreshToken', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     summary: Logout a user
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: User logged out successfully
+ */
 authRouter.post('/logout', (req, res) => {
   res.status(200).json({ message: 'User logged out successfully' });
 });
 
+/**
+ * @swagger
+ * /auth/user:
+ *   get:
+ *     summary: Get user details
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User details retrieved successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 authRouter.get('/user', authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -96,6 +211,35 @@ authRouter.get('/user', authMiddleware, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /auth/updateUser:
+ *   post:
+ *     summary: Update user profile
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               dailyRate:
+ *                 type: number
+ *               notAllowedProducts:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: User profile updated successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Error updating user profile
+ */
 authRouter.post('/updateUser', authMiddleware, async (req, res) => {
   const { dailyRate, notAllowedProducts } = req.body;
   try {
