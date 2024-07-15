@@ -41,7 +41,7 @@ export const App = () => {
   }, [dispatch, isLoggedIn]);
 
   return (
-    <Router basename="/HEALTH">
+    <Router >
       <Layout />
       {isRefreshing ? (
         <Loader />
