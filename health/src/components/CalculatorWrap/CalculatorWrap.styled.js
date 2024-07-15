@@ -1,25 +1,34 @@
 import styled from 'styled-components';
 export const Section = styled.section`
+
   @media screen and (max-width: 479.99px) {
-    width: 90vw;
+    background-color:#F0F1F3;;
   }
 
   @media screen and (min-width: 480px) {
     width: 440px;
   }
   @media screen and (max-width: 767.99px) {
-    margin: 40px auto 0;
+    margin: 5px auto 0;
+    
   }
   @media screen and (min-width: 768px) {
     margin: 0;
-    margin-top: 60px;
-    width: 704px;
+    width: 100%;
+    background-image: url("../../src/assets/calculator-page-t.png");
+    background-position-y: bottom;
+    background-position-x: right;
+    background-size: 746px 646px;
+    background-repeat: no-repeat;
   }
 
   @media screen and (min-width: 1280px) {
-    margin-top: 60px;
-
     width: 40%;
+    background-image: url("../../../src/assets/calculator-page-d.png");
+    background-position-y: bottom;
+    background-position-x: right;
+    background-size: 746px 646px;
+    background-repeat: no-repeat;
   }
 `;
 
@@ -34,7 +43,7 @@ export const SectionSummary = styled.section`
 `;
 
 export const Wrapper = styled.div`
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(17px);
   -webkit-backdrop-filter: blur(17px);

@@ -5,7 +5,7 @@ import {
   Container,
   DiaryWrapper,
   WrapCont,
-} from '../CalculatorPage/Calculator.styled';
+} from './Diary.styled';
 import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
 import { DiaryAddProductForm } from '../../components/DiaryAddProductForm/DiaryAddProductForm';
 import { DiaryProductsList } from '../../components/DiaryProductsList/DiaryProductsList';

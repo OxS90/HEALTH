@@ -10,6 +10,7 @@ export const UlStyled = styled.ul`
   overflow-y: scroll;
   scroll-behavior: smooth;
   max-height: 358px;
+  padding-left: 0;
 
   &:first-child {
     margin-top: 30px;
@@ -41,7 +42,7 @@ export const UlStyled = styled.ul`
 
 export const LiStyle = styled.li`
   display: flex;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   align-items: stretch;
 

@@ -5,7 +5,25 @@ export const Section = styled.section`
   min-height: 100vh;
   background-color: rgba(255, 255, 255, 0.6);
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  padding-left: 16px;
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 100%;
+   @media (min-width: 768px) {
+    background-image: url("../src/assets/home.png");
+    background-position-x: right;
+    background-size: 746px 646px;
+    background-repeat: no-repeat;
+  }
+
+  @media (min-width: 1280px) {
+    background-image: url("../src/assets/home.png"),
+      url("../src/assets/vector.png");
+    background-position-x: right;
+    background-size: 746px 646px;
+    background-repeat: no-repeat;
+    
+  }
 `;
 
 export const Content = styled.div`
@@ -36,10 +54,7 @@ export const Title = styled.h1`
   @media screen and (min-width: 768px) {
     font-size: 18px;
   line-height: calc(24 / 18);
-  }
-
-  @media screen and (min-width: 1280px) {
-    text-align: left;
+  text-align: left;
   }
 `;
 
@@ -50,7 +65,6 @@ export const FormBox = styled.form`
   flex-direction: column;
   gap: 40px;
   justify-content: center;
-  align-items: center;
 
   @media screen and (min-width: 1280px) {
     align-items: flex-start;
@@ -63,10 +77,6 @@ export const Label = styled.label`
   width: 280px;
 
   @media screen and (min-width: 768px) {
-    width: 240px;
-  }
-
-  @media screen and (min-width: 1280px) {
     width: 300px;
   }
 `;
@@ -124,7 +134,7 @@ export const ButtonsList = styled.div`
   gap: 20px;
   margin-top: 20px;
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 768px) {
     flex-direction: row;
     height: 108px;
   }
@@ -215,4 +225,10 @@ export const Ribbon = styled.div`
   width: 100%;
   margin-top: 4px;
   border-radius: 10px;
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 300px;
+  }
 `;

@@ -54,22 +54,22 @@ const calculateDailyRate = async (req, res) => {
     const notRecommendedProducts = products
       .filter((product) => product.groupBloodNotAllowed[bloodType])
       .map((product) => product.title);
-      console.log('Calculated daily rate:', dailyRateCalc);
-      console.log('Not recommended products:', notRecommendedProducts);
-    // If the user is authenticated, save the daily rate and not recommended products to the database
-    if (req.user) {
-      console.log('Authenticated user:', req.user);
-      const dailyRateEntry = new DailyRate({
-        userId: req.user.id,
-        dailyRate: dailyRateCalc,
-        notRecommendedProducts,
-      });
-      await dailyRateEntry.save();
-      console.log('Daily rate saved for user:', req.user.id);
-    }
 
-    // Sending the calculated daily calories and the list of non-recommended products as a response
-    res.json({ dailyRate: dailyRateCalc, notRecommendedProducts });
+    // If the user is authenticated, save or update the daily rate and not recommended products in the database
+    if (req.user) {
+      const dailyRateEntry = await DailyRate.findOneAndUpdate(
+        { userId: req.user.id },
+        {
+          userId: req.user.id,
+          dailyRate: dailyRateCalc,
+          notRecommendedProducts,
+        },
+        { new: true, upsert: true }
+      );
+      res.json(dailyRateEntry);
+    } else {
+      res.json({ dailyRate: dailyRateCalc, notRecommendedProducts });
+    }
   } catch (error) {
     res.status(500).json({ message: 'Error calculating daily intake', error });
   }
