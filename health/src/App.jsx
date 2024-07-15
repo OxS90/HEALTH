@@ -1,3 +1,4 @@
+import React from 'react';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
